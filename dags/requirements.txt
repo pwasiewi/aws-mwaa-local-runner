@@ -1,0 +1,10 @@
+dbt-core==1.0.1
+airflow-dbt==0.4.0
+watchtower==0.7.3
+apache-airflow-providers-snowflake==1.3.0
+snowflake-connector-python==2.7.2
+moto==2.3.0
+pytest==6.2.5
+snowflake-sqlalchemy==1.2.4
+# apache-airflow-providers-amazon==1.4.0
+# boto3==1.17.53
