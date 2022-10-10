@@ -10,24 +10,35 @@ The CLI builds a Docker container image locally that’s similar to a MWAA produ
 
 ```text
 dags/
+  example_dag_with_custom_ssh_plugin.py
+  example_dag_with_taskflow_api.py
   requirements.txt
   tutorial.py
 docker/
-  .gitignore
-  mwaa-local-env
-  README.md
   config/
     airflow.cfg
     constraints.txt
+    mwaa-base-providers-requirements.txt
     requirements.txt
     webserver_config.py
   script/
     bootstrap.sh
     entrypoint.sh
-  docker-compose-dbonly.yml
+    systemlibs.sh
+    generate_key.sh
   docker-compose-local.yml
+  docker-compose-resetdb.yml
   docker-compose-sequential.yml
   Dockerfile
+plugins/
+  ssh_plugin.py
+.gitignore
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+LICENSE
+mwaa-local-env
+README.md
+VERSION
 ```
 
 ## Prerequisites
@@ -115,17 +126,11 @@ Successfully installed aws-batch-0.6 awscli-1.19.21 botocore-1.20.21 docutils-0.
 
 #### Custom plugins
 
-- Create a directory at the root of this repository, and change directories into it. This should be at the same level as `dags/` and `docker`. For example:
+- There is a directory at the root of this repository called plugins. It contains a sample plugin ```ssh_plugin.py```
+- In this directory, create a file for your new custom plugin. For example:
 
 ```bash
-mkdir plugins
-cd plugins
-```
-
-- Create a file for your custom plugin. For example:
-
-```bash
-virtual_python_plugin.py
+ssh_plugin.py
 ```
 
 - (Optional) Add any Python dependencies to `dags/requirements.txt`.
@@ -159,13 +164,20 @@ To learn more, see [Amazon MWAA Execution Role](https://docs.aws.amazon.com/mwaa
 
 The following section contains errors you may encounter when using the Docker container image in this repository.
 
-## My environment is not starting - process failed with dag_stats_table already exists
+### My environment is not starting - process failed with dag_stats_table already exists
 
 - If you encountered [the following error](https://issues.apache.org/jira/browse/AIRFLOW-3678): `process fails with "dag_stats_table already exists"`, you'll need to reset your database using the following command:
 
 ```bash
 ./mwaa-local-env reset-db
 ```
+
+### Fernet Key InvalidToken
+
+A Fernet Key is generated during image build (`./mwaa-local-env build-image`) and is durable throughout all
+containers started from that image. This key is used to [encrypt connection passwords in the Airflow DB](https://airflow.apache.org/docs/apache-airflow/stable/security/secrets/fernet.html).
+If changes are made to the image and it is rebuilt, you may get a new key that will not match the key used when
+the Airflow DB was initialized, in this case you will need to reset the DB (`./mwaa-local-env reset-db`).
 
 ## Security
 

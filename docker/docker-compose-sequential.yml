@@ -1,7 +1,7 @@
 version: '3.7'
 services:
     webserver:
-        image: amazon/mwaa-local:2.0
+        image: amazon/mwaa-local:2.2
         restart: always
         environment:
             - LOAD_EX=n
@@ -14,7 +14,7 @@ services:
             - ${PWD}/dags:/usr/local/airflow/dags
             - ${PWD}/plugins:/usr/local/airflow/plugins
         ports:
-            - "8080:8080"
+            - "9999:9999"
         command: webserver
         healthcheck:
             test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]

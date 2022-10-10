@@ -14,7 +14,7 @@ services:
             - "${PWD}/db-data:/var/lib/postgresql/data"
 
     local-runner:
-        image: amazon/mwaa-local:2.0.2
+        image: amazon/mwaa-local:2.2
         restart: always
         depends_on:
             - postgres
@@ -29,7 +29,7 @@ services:
             - ${PWD}/dags:/usr/local/airflow/dags
             - ${PWD}/plugins:/usr/local/airflow/plugins
         ports:
-            - "8080:8080"
+            - "9999:9999"
         command: local-runner
         healthcheck:
             test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]

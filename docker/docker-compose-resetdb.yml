@@ -14,7 +14,7 @@ services:
             - "${PWD}/db-data:/var/lib/postgresql/data"
 
     resetdb:
-        image: amazon/mwaa-local:2.0
+        image: amazon/mwaa-local:2.2
         depends_on:
             - postgres
         environment:
@@ -28,5 +28,5 @@ services:
             - ${PWD}/dags:/usr/local/airflow/dags
             - ${PWD}/plugins:/usr/local/airflow/plugins
         ports:
-            - "8080:8080"
+            - "9999:9999"
         command: resetdb
