@@ -25,8 +25,9 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.subdag_operator import SubDagOperator
 from airflow.operators.postgres_operator import PostgresOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
-from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
+from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
+
 
 DBT_BIN = "/usr/local/airflow/.local/bin/dbt"
 DBT_PROJECT_DIR = "/usr/local/airflow/dags/dbt/"
@@ -53,11 +54,11 @@ with DAG(
     default_args=DEFAULT_ARGS,
     description="DBT load",
     schedule_interval=timedelta(days=1),
-    start_date=datetime(2022, 7, 1),
-    end_date=datetime(2022, 7, 16),
-    catchup=True,
+    start_date=datetime(2022, 10, 16),
+    #end_date=datetime(2022, 10, 16),
+    catchup=False,
     max_active_runs=1,
-    tags=["dbt"],
+    tags=["dbt", "debug"],
 ) as dag:
     
     @provide_session

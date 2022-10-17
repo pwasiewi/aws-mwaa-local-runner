@@ -22,8 +22,9 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.subdag_operator import SubDagOperator
 from airflow.operators.postgres_operator import PostgresOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
-from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
+from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
+
 
 DBT_BIN = "/usr/local/airflow/.local/bin/dbt"
 DBT_PROJECT_DIR = "/usr/local/airflow/dags/dbt/"
@@ -46,9 +47,9 @@ DEFAULT_ARGS = {
 
 
 with DAG(
-    "dag_dbt_run",
+    "dag_dbt_debug",
     default_args=DEFAULT_ARGS,
-    description="DBT run",
+    description="DBT debug",
     schedule_interval=timedelta(days=1),
     start_date=datetime(2022, 7, 1),
     end_date=datetime(2022, 7, 30),
@@ -60,19 +61,14 @@ with DAG(
     # partitioning and loaded_at for the procedure calls
     day_partitioning = "{{execution_date.strftime('%Y/%m/%d')}}"
     loaded_at = "{{execution_date.strftime('%Y-%m-%d')}}"
-    base_prefix = "raw/sac"
-    database = "dwh_test"
-    schema = "raw"
-    warehouse = "compute"
-    role = "sysadmin"
 
     dbt_deps = BashOperator(
         task_id="dbt_deps",
         bash_command=f"{DBT_BIN} deps {DBT_DEFAULTS}",
     )
 
-    dbt_run = BashOperator(
-        task_id="dbt_run",
+    dbt_debug = BashOperator(
+        task_id="dbt_debug",
         bash_command=f"{DBT_BIN} debug {DBT_DEFAULTS}",
     )
 
@@ -82,5 +78,5 @@ with DAG(
     )
 
     (
-        dbt_deps       >> dbt_run        >> dbt_clean
+        dbt_deps  >> dbt_debug  >> dbt_clean
     )
