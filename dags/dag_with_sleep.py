@@ -14,7 +14,7 @@ dag = DAG(dag_id= "dag_with_sleep",
           schedule_interval="@once", 
           start_date=dt.datetime(2022, 10, 19, 10, 0, 0), 
           is_paused_upon_creation=False,
-          tags=['loop', 'BashOperator'])
+          tags=['loop', 'BashOperator', 'sleep'])
 previous_layer = None
 for layer_n in range(layers):
     current_layer = [BashOperator(task_id=f"task{layer_n}-{task_n}", 

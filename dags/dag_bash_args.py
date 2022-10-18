@@ -17,11 +17,6 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.subdag_operator import SubDagOperator
 from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
 
-DBT_BIN = "/usr/local/airflow/.local/bin/dbt"
-DBT_PROJECT_DIR = "/usr/local/airflow/dags/dbt/"
-DBT_PROFILES_DIR = "/usr/local/airflow/dags/dbt/profile"
-DBT_DEFAULTS = f"--project-dir {DBT_PROJECT_DIR} --profiles-dir {DBT_PROFILES_DIR}"
-
 DEFAULT_ARGS = {
     "owner": "airflow",
     'start_date': datetime(2022,10,18),
@@ -56,12 +51,12 @@ run_this="echo "+database+"."+warehouse
 def test_func(database,warehouse,day):
     print(database+"."+warehouse+"."+day)
     mydate = datetime.strptime(day, '%Y-%m-%d')
-    day2 = mydate.strftime('%Y-%m-%d')
+    day2 = mydate.strftime('%Y/%m/%d')
     print("\nPo konwersji: "+day2)
 
 
 with DAG(
-    dag_id="dag_args_bash",
+    dag_id="dag_bash_args",
     schedule_interval=None,
     catchup=False,
     tags=['BashOperator', 'PythonOperator', 'args', 'DEFAULT_ARGS', 'TRIGGER_ARGS'],

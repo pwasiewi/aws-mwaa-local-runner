@@ -1,6 +1,5 @@
 # https://dev.to/aws/working-with-parameters-and-variables-in-amazon-managed-workflows-for-apache-airflow-4f5h
 # https://fares.codes/posts/everything-you-probably-need-to-know-about-airflow/
-# https://sqlite.in/?qa=536672/
 # https://www.cloudwalker.io/2019/07/29/airflow-sub-dags/
 # https://big-data-demystified.ninja/2020/04/15/airflow-xcoms-example-airflow-demystified/
 import os

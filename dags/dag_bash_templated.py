@@ -22,7 +22,7 @@ default_args = {
     # 'end_date': datetime(2016, 1, 1),
 }
 
-dag = DAG("dag_templated_command", 
+dag = DAG("dag_bash_templated", 
           default_args=default_args, 
           schedule_interval=timedelta(1),
           tags=['template', 'BashOperator']
