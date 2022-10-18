@@ -1,3 +1,4 @@
+# https://airflow.apache.org/docs/apache-airflow/2.2.2/concepts/dags.html
 from datetime import datetime
 
 from airflow import DAG
@@ -9,7 +10,7 @@ with DAG(dag_id='dag_acyclic_04',
     start_date=datetime(2022, 10, 1),
     catchup=False,
     schedule_interval="@daily",
-    tags=['dummy', 'flow'],
+    tags=['dummy', 'example', 'dependencies','chain'],
          ) as dag:
 
     t0 = DummyOperator(task_id='t0')

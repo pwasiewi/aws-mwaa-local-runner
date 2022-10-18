@@ -90,7 +90,7 @@ def print_output(dag_run):
 with DAG(
     'dag_trigger_main',
     start_date=days_ago(2),
-    tags=['my_test'],
+    tags=['trigger','args'],
     default_args=DEFAULT_ARGS,
     description='A simple trigger DAG',
     schedule_interval=None

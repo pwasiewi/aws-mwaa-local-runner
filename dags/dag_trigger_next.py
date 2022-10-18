@@ -20,20 +20,11 @@ from airflow.operators.subdag_operator import SubDagOperator
 from airflow.operators.postgres_operator import PostgresOperator
 from airflow.operators.trigger_dagrun import TriggerDagRunOperator
 from airflow.operators.python_operator import PythonOperator, BranchPythonOperator
-# from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
-# from src.secret import get_secret
 
 DBT_BIN = "/usr/local/airflow/.local/bin/dbt"
 DBT_PROJECT_DIR = "/usr/local/airflow/dags/dbt/"
 DBT_PROFILES_DIR = "/usr/local/airflow/dags/dbt/profile"
 DBT_DEFAULTS = f"--project-dir {DBT_PROJECT_DIR} --profiles-dir {DBT_PROFILES_DIR}"
-
-# Make Snowflake credentials available in the Airflow env
-# so that DBT can use them for variable substitution in the profile
-#SNOWFLAKE_SECRET_NAME = "/sl-analytics/dev/airflow/connections/snowflake_credentials"
-#env_vars = get_secret(SNOWFLAKE_SECRET_NAME)
-#for e in env_vars:
-#    os.environ[e] = env_vars[e]
 
 DEFAULT_ARGS = {
     "owner": "airflow",

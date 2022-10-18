@@ -1,9 +1,14 @@
+#https://airflow.apache.org/docs/apache-airflow/stable/concepts/operators.html
 import json
 from airflow.decorators import dag, task, task_group
 
 import pendulum
 
-@dag(schedule_interval=None, start_date=pendulum.datetime(2021, 1, 1, tz="UTC"), catchup=False)
+@dag(dag_id='dag_group_01',
+     schedule_interval=None, 
+     start_date=pendulum.datetime(2022, 10, 18, tz="UTC"), 
+     catchup=False, 
+     tags=['dbt','task','group'])
 
 def task_group_example():
 

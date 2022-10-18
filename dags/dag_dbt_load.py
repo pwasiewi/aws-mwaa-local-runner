@@ -58,7 +58,7 @@ with DAG(
     #end_date=datetime(2022, 10, 16),
     catchup=False,
     max_active_runs=1,
-    tags=["dbt", "debug"],
+    tags=['dbt','BashOperator','debug','run','model','PostgresOperator','Connection','merge_conn'],
 ) as dag:
     
     @provide_session

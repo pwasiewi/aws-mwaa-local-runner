@@ -55,7 +55,7 @@ with DAG(
     end_date=datetime(2022, 7, 30),
     catchup=True,
     max_active_runs=1,
-    tags=["dbt"],
+    tags=['dbt','BashOperator','debug','test'],
 ) as dag:
     
     # partitioning and loaded_at for the procedure calls

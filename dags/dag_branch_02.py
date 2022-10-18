@@ -28,7 +28,7 @@ with DAG(
     start_date=datetime(2022, 10, 1),
     catchup=True,
     schedule_interval="@daily",
-    tags=['branch', 'NONE_FAILED_MIN_ONE_SUCCESS'],
+    tags=['branch', 'NONE_FAILED_MIN_ONE_SUCCESS','loop','PythonOperator'],
 ) as dag:
     # run_this_first
     t0 = DummyOperator(
@@ -44,8 +44,9 @@ with DAG(
     
     t0 >> branching
 
-    join = DummyOperator(
+    join = PythonOperator(
         task_id='join',
+        python_callable=print_running_tasks,
         trigger_rule=TriggerRule.NONE_FAILED_MIN_ONE_SUCCESS,
     )
     
