@@ -10,7 +10,7 @@ layers = 3
 ntasks = 1
 sleep_seconds = 2
 
-dag = DAG(dag_id= "dag_with_sleep", 
+dag = DAG(dag_id= "dag_bash_sleep", 
           schedule_interval="@once", 
           start_date=dt.datetime(2022, 10, 19, 10, 0, 0), 
           is_paused_upon_creation=False,

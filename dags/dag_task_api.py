@@ -10,7 +10,7 @@ from airflow.utils.dates import days_ago
 default_args = {
     'owner': 'airflow',
 }
-@dag(dag_id='dag_task_api',default_args=default_args, schedule_interval="@daily", start_date=days_ago(2), tags=['example'])
+@dag(dag_id='dag_task_api',default_args=default_args, schedule_interval="@daily", start_date=days_ago(2), tags=['task','task api'])
 def dag_with_taskflow_api():
     """
     ### TaskFlow API Tutorial Documentation
