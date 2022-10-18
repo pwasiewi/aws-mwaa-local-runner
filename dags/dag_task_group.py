@@ -1,4 +1,5 @@
-#https://airflow.apache.org/docs/apache-airflow/stable/concepts/operators.html
+# https://github.com/pwasiewi/eulinks/tree/master/airflowdbt
+# https://airflow.apache.org/docs/apache-airflow/stable/concepts/operators.html
 import json
 from airflow.decorators import dag, task, task_group
 

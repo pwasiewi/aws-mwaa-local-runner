@@ -1,4 +1,4 @@
-#https://gist.github.com/semihsezer/87bdd6991415d883e37c8040f08d2238
+# https://github.com/pwasiewi/eulinks/tree/master/airflowdbt
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.operators.subdag_operator import SubDagOperator

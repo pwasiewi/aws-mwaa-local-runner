@@ -1,10 +1,4 @@
-# https://dev.to/aws/working-with-parameters-and-variables-in-amazon-managed-workflows-for-apache-airflow-4f5h
-# https://stackoverflow.com/questions/41517798/proper-way-to-create-dynamic-workflows-in-airflow
-# https://big-data-demystified.ninja/2020/04/15/airflow-xcoms-example-airflow-demystified/
-# https://fares.codes/posts/everything-you-probably-need-to-know-about-airflow/
-# https://groups.google.com/g/airbnb_airflow/c/GRdoW30PNUI
-# https://www.cloudwalker.io/2019/07/29/airflow-sub-dags/
-
+# https://github.com/pwasiewi/eulinks/tree/master/airflowdbt
 import os
 import json
 import logging
