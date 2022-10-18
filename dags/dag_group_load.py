@@ -4,7 +4,7 @@ from airflow.decorators import dag, task, task_group
 
 import pendulum
 
-@dag(dag_id='dag_group_01',
+@dag(dag_id='dag_group_load',
      schedule_interval=None, 
      start_date=pendulum.datetime(2022, 10, 18, tz="UTC"), 
      catchup=False, 

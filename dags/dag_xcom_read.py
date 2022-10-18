@@ -113,7 +113,7 @@ dag = DAG(DAG_NAME,
           description='Test workflow',
           catchup=False,
           schedule_interval=None,
-          tags=[tags=['xcom','PythonOperator','push','delete']],
+          tags=['xcom','PythonOperator','push','delete'],
           start_date=datetime(2022, 10, 18))
 
 test1 = SubDagOperator(
