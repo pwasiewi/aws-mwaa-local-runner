@@ -8,7 +8,7 @@ import pendulum
      schedule_interval=None, 
      start_date=pendulum.datetime(2022, 10, 18, tz="UTC"), 
      catchup=False, 
-     tags=['dbt','task','group'])
+     tags=['task','task api','group','ETL'])
 
 def task_group_example():
 

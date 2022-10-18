@@ -137,7 +137,7 @@ dag = DAG(
   default_args=DEFAULT_ARGS,
 #  start_date=datetime(2022, 10, 18),
   schedule_interval=None,
-  tags=['xcom','PythonOperator','push','pull']
+  tags=['xcom','PythonOperator','push','pull','message','BashOperator']
 )
 
 def push_function(**context):
